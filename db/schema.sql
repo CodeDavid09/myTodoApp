@@ -3,10 +3,19 @@ CREATE DATABASE todos_db;
 
 USE todos_db;
 
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(30) NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE todos (
     id INT NOT NULL AUTO_INCREMENT,
     task VARCHAR(30) NOT NULL,
     completed BOOLEAN DEFAULT false,
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id)
+    userId INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE SET NULL
 );
+
